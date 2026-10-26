@@ -1,5 +1,5 @@
 const dockPaths = `<g transform="translate(3 7) scale(.48)"><path class="part-a" d="M614.702 121.018C568.004 67.0353 505.918 28.621 436.768 10.9258C367.618 -6.76935 294.711 -2.89928 227.823 22.0171C160.935 46.9334 103.265 91.7048 62.544 150.328C21.8235 208.951 0 278.622 0 350C0 421.378 21.8235 491.05 62.544 549.672C103.265 608.295 160.935 653.067 227.823 677.983C294.711 702.899 367.618 706.769 436.768 689.074C505.918 671.379 568.004 632.965 614.702 578.982C560.353 570.13 510.925 542.235 475.256 500.285C439.586 458.335 420 405.065 420 350C420 294.935 439.586 241.666 475.256 199.716C510.925 157.766 560.353 129.87 614.702 121.018Z"/><circle class="part-b" cx="652" cy="350" r="168"/></g>`;
-function usingCurrentLogo() { return document.getElementById('logo-mode').value === 'current'; }
+function usingCurrentLogo() { return document.querySelector('[data-logo="current"]').getAttribute('aria-pressed') === 'true'; }
 function currentLockup(extraClass = '') {
   return `<span class="current-lockup ${extraClass}" aria-label="Pairing Mind"><svg viewBox="0 0 400 350" aria-hidden="true">${dockPaths}</svg><span>p<span class="logo-ai">ai</span>ring mind</span></span>`;
 }
@@ -22,15 +22,6 @@ const directions = {
     risk: 'The easiest to mistake for another technology or education brand. It needs disciplined use of the paired arcs to become recognizable.',
     construction: 'Two matching thick half-rings, one rotated and shifted. Equal area and weight; offset centers keep the pair from becoming a single closed circle.',
     paths: '<path class="part-a" d="M190 20A150 150 0 0 0 190 320V240A70 70 0 0 1 190 100Z"/><path class="part-b" d="M210 30A150 150 0 0 1 210 330V250A70 70 0 0 0 210 110Z"/>'
-  },
-  vermilion: {
-    name: 'Vermilion / Sand', number: '03', font: 'Bricolage Grotesque',
-    colors: ['#301C19', '#CF3B26', '#F3EADB', '#E0B89C'],
-    description: '03 / The warmest expression. Substantial Bricolage lettering, a red-orange accent, and paired corners that make room for the work.',
-    strength: 'Warmth without delicate typography. Feels closer to a workshop or a club you belong to, with enough graphic weight to remain assertive.',
-    risk: 'The type has a more playful voice. The red-orange needs testing against Chad’s earlier concern about orange; the sand-led application intentionally avoids black-and-orange dominance.',
-    construction: 'Two equal L-shaped frames, turned toward each other. Each has the same area and stroke thickness. Their shared opening becomes a place for a headline or a creation.',
-    paths: '<path class="part-a" d="M25 25H270V105H105V270H25Z"/><path class="part-b" d="M375 325H130V245H295V80H375Z"/>'
   }
 };
 
@@ -39,8 +30,8 @@ function pairSvg(direction, extraClass = '', viewBox = '0 0 400 350') {
 }
 
 function renderDirection(key) {
-  const d = directions[key] || directions.volt;
-  key = directions[key] ? key : 'volt';
+  if (!Object.hasOwn(directions, key)) key = 'volt';
+  const d = directions[key];
   const currentLogo = usingCurrentLogo();
   const artwork = currentLogo ? { ...d, paths: dockPaths } : d;
   const board = document.getElementById('board');
@@ -90,7 +81,10 @@ document.querySelectorAll('[data-direction]').forEach(button => button.addEventL
   history.replaceState(null, '', `#${button.dataset.direction}`);
   renderDirection(button.dataset.direction);
 }));
-document.getElementById('logo-mode').addEventListener('change', () => renderDirection(document.querySelector('[data-direction][aria-pressed="true"]').dataset.direction));
+document.querySelectorAll('[data-logo]').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('[data-logo]').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+  renderDirection(document.querySelector('[data-direction][aria-pressed="true"]').dataset.direction);
+}));
 document.getElementById('monochrome').addEventListener('change', event => document.getElementById('board').classList.toggle('monochrome', event.target.checked));
 function updateSpecimens() {
   const text = document.getElementById('sample-text').value || 'Put more within reach.';
@@ -99,7 +93,7 @@ function updateSpecimens() {
 }
 document.getElementById('sample-text').addEventListener('input', updateSpecimens);
 document.getElementById('letter-case').addEventListener('change', updateSpecimens);
-window.addEventListener('hashchange', () => { const key = location.hash.slice(1); if (directions[key]) renderDirection(key); });
+window.addEventListener('hashchange', () => { const key = location.hash.slice(1); if (key !== 'type-study' && key !== 'board') renderDirection(key); });
 renderDirection(location.hash.slice(1));
 
 document.getElementById('jump-portal').addEventListener('click', () => document.getElementById('portal-home').scrollIntoView({behavior:'instant',block:'start'}));
