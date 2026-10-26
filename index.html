@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pairing Mind — visual directions</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="portal.js" defer></script>
+  <script src="study.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#board">Skip to visual direction</a>
+  <header class="study-header">
+    <a class="study-title" href="#volt">Pairing Mind <span>Identity exploration / 01</span></a>
+    <span class="study-date">26 OCT 2026 · WORKING STUDIES</span>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">The direction we chose</p><h1 id="page-title">Capability.<br>With someone in your corner.</h1></div>
+      <p class="intro-copy">A performance identity built around personal progress. Big type. Two distinct forms. Enough character to work without a photograph.</p>
+    </section>
+    <div class="controls">
+      <nav class="direction-tabs" aria-label="Visual directions">
+        <button data-direction="volt" aria-pressed="true"><i style="--dot:#D8F53C"></i><span>01</span> Volt / Ink</button>
+        <button data-direction="cobalt" aria-pressed="false"><i style="--dot:#194AE8"></i><span>02</span> Cobalt / Chalk</button>
+        <button data-direction="vermilion" aria-pressed="false"><i style="--dot:#CF3B26"></i><span>03</span> Vermilion / Sand</button>
+      </nav>
+      <div class="view-controls"><label class="logo-control">Show<select id="logo-mode"><option value="current">Current logo</option><option value="exploration">Original exploration</option></select></label><label class="mono-control"><input id="monochrome" type="checkbox"> View without color</label></div>
+    </div>
+    <div class="direction-meta" aria-live="polite"><p id="direction-description"></p><div class="study-jumps"><button id="jump-portal" type="button">Portal home ↓</button><a href="#type-study">Compare the type ↓</a></div></div>
+    <section id="board" class="board volt" aria-label="Selected identity direction"></section>
+    <section class="rationale" aria-label="Direction assessment">
+      <div><p class="eyebrow">What earns its place</p><p id="strength"></p></div>
+      <div><p class="eyebrow">What to watch</p><p id="risk"></p></div>
+      <div><p class="eyebrow">The construction</p><p id="construction"></p></div>
+    </section>
+    <section id="type-study" class="type-study" aria-labelledby="type-title">
+      <div class="section-title"><div><p class="eyebrow">Same words. Same color. Actual fonts.</p><h2 id="type-title">Let the letters do the work.</h2></div><p>These are free font files, rendered here. The existing headline family is included as a control.</p></div>
+      <div class="type-controls"><label>Try your own headline<input id="sample-text" type="text" maxlength="70" value="Put more within reach." autocomplete="off"></label><label>Letter case<select id="letter-case"><option value="normal">Sentence case</option><option value="upper">UPPERCASE</option></select></label></div>
+      <div class="specimen archivo"><div class="specimen-meta"><b>01 / Archivo</b><span>900 weight · 112% width</span><a href="https://www.typewolf.com/archivo" target="_blank" rel="noopener noreferrer">Typewolf ↗</a></div><p class="sample">Put more within reach.</p><p class="type-note">The strongest performance candidate. Broad shoulders, firm shapes, and enough width to give a short statement presence.</p></div>
+      <div class="specimen manrope"><div class="specimen-meta"><b>02 / Manrope</b><span>800 weight · natural width</span><a href="https://www.typewolf.com/manrope" target="_blank" rel="noopener noreferrer">Typewolf ↗</a></div><p class="sample">Put more within reach.</p><p class="type-note">A cleaner, more measured alternative. Good clarity; the graphics need to provide more of the distinctive energy.</p></div>
+      <div class="specimen bricolage"><div class="specimen-meta"><b>03 / Bricolage Grotesque</b><span>800 weight · 100% width · display optical size</span><a href="https://github.com/ateliertriay/bricolage" target="_blank" rel="noopener noreferrer">Designer’s source ↗</a></div><p class="sample">Put more within reach.</p><p class="type-note">The expressive challenger. More irregular letter details bring personality; test whether that warmth strengthens or softens the coaching energy.</p></div>
+      <div class="specimen jakarta"><div class="specimen-meta"><b>Control / Plus Jakarta Sans</b><span>800 weight · existing headline family</span><a href="fonts/plusjakartasans.txt" target="_blank">License ↗</a></div><p class="sample">Put more within reach.</p><p class="type-note">A familiar baseline. A new typeface should give us a visible advantage over this.</p></div>
+    </section>
+    <section class="research-notes">
+      <div><p class="eyebrow">Research & practical use</p><h2>Free, portable,<br>and worth comparing.</h2></div>
+      <div><p>Archivo and Manrope extend the Typewolf research within the free-only constraint. Bricolage is an additional candidate from its designer’s open-source project. All three, plus the supporting Source Sans 3, are supplied under the SIL Open Font License; notices are included in the fonts folder.</p><p>Headlines vary by direction. Source Sans 3 stays constant for body text so the comparison stays readable. Editable Google Slides font availability still needs checking before a production choice.</p><p class="quiet">Sample compositions and copy only. Current-logo mode preserves the existing Dock A geometry and wordmark, with palette-adapted colors. Original exploration shows the unapproved graphic studies. The project preview is illustrative; it is not a student result or testimonial. No live brand assets have changed.</p></div>
+    </section>
+  </main>
+  <footer><span>PAIRING MIND / VISUAL DISCOVERY</span><span>Choose the direction with the most potential. We refine after that.</span></footer>
+</body>
+</html>
